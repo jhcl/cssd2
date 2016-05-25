@@ -4,7 +4,7 @@
             <li>
                 <img style="float:left;" width="30px" height="30px" src="images/wl-logo.png" alt="leakywiks logo" />
             </li>
-            <li class="menu-text">Leakywiks</li>
+            <li class="menu-text">LeakyWiks</li>
 
                 <li class="menu-alignment"><a href="#">Home</a></li>
                 <li class="menu-alignment"><a href="#">Register</a></li>
