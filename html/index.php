@@ -1,18 +1,39 @@
-<?php session_start() ?>
-<?php include "../includes/header.php" ?>
-<?php include "../includes/heading.php" ?>
+<?php
 
-<div id="registerForm">
-  <?php
-    include "../includes/login.php";
-    include "../includes/dbconn.php";
-    print_r(PDO::getAvailableDrivers());
-    //  echo phpinfo();
-    $sql = 'SELECT username, password FROM gebruiker';
-    foreach ($dbh->query($sql) as $row) {
-      print "<br>";
-      print $row['username'] . "\t";
-      print $row['password'];
-    }
-  ?>
+// Start session for user actions...
+session_start();
+
+// Include Database Connection
+include "../includes/dbconn.php";
+
+// Heading - Header SECTION
+include "../includes/header.php";
+include "../includes/heading.php";
+// END Heading - Header SECTION
+
+?>
+
+<div class="row content-home">
+  <div class="small-8 columns content-left-wrapper">
+    <div class="small-12 grey-border content-image-heading">
+      <h3>Welcome on LeakyWiks</h3>
+      <p class="small-10 small-push-1">
+        To use LeakyWiks just simply Register yourself and login the application.
+        With this application you can get invited to certain books by the owner of the book.
+        When you got invited to the book, the book you got invited to is ready for use!
+      </p>
+      <p class="small-10 small-push-1">
+        We hope you have a wonderfull time here on LeakyWiks. </br>
+        - The Leakywiks Team
+      </p>
+
+
+    </div>
+  </div>
+
+  <div class="small-4 columns content-right-wrapper grey-border">
+    <?php include "../includes/login.php"; ?>
+  </div>
+
 </div>
+

@@ -1,25 +1,46 @@
-<?php 
-  session_start();
-?>
-<body>
-  <div id="wrapper">
-    <div id="content">
-      <h2>Login</h2>
-      <p>
-      <form method="post" action="chkproxy.php" />
-        <label for="name">username:</label><br />
-        <input type="text" id="username" name="username" value="" /><br />
-   
-        <label for="mail">password:</label><br />
-        <input type="text" id="password" name="password" value="" /><br />
-      
-        <input type="submit" name="submit" value="login" />
-        <input type="submit" name="submit" value="register" />
-      </form>
-      </p>
-    </div> <!-- end #content -->
-  </div> <!-- End #wrapper -->
-</body>
-</html>
+<form method="post" action="chkproxy.php" />
+  <div class="small-12 small-centered columns login-form-bg">
+    <div class="login-box">
+      <div class="row">
+        <div class="small-8 small-push-2 columns">
+          <form>
+            <div class="row">
+              <div class="small-12 columns">
+                <input type="text" name="username" placeholder="Username" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 columns">
+                <input type="password" name="password" placeholder="Password" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="small-12 small-centered columns">
+                <input type="submit" name="submit" class="button expand login-btn small-12" value="login"/>
+                <input type="submit" name="submit" class="button expand login-btn small-12" value="register"/>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
+    <?php
+      print_r(PDO::getAvailableDrivers());
+      // echo phpinfo();
+      $sql = 'SELECT username, password FROM gebruiker';
+      foreach ($dbh->query($sql) as $row) {
+        print "<br>";
+        print $row['username'] . "\t";
+        print $row['password'];
+      }
+
+      if(isset($_SESSION['msg'])){
+        echo '<br/>';
+        echo $_SESSION['msg'];
+        $_SESSION['msg'] = "";
+      }
+    ?>
+  </div>
+</form>
 

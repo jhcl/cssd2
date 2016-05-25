@@ -31,6 +31,6 @@
     $sth->bindParam(':pwd', $password);
     $sth->execute();
     $_SESSION['msg'] = "Registered ".$username." ".$password;
-    header('Location:/index.php'); 
+    header('Location:/index.php');
   }
 ?>
