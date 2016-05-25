@@ -1,0 +1,82 @@
+html,body{
+    background-color: #e5e5e5;
+    font-family: Raleway, sans-serif;
+}
+img {
+float: left;
+height: 50px;
+margin: 5px 10px
+}
+.grey-border{
+    border: 1px solid #e5e5e5;
+}
+#navigation-menu{
+    margin-bottom: 50px;
+    background-image: url("../images/nav-bg.jpg");
+    background-size: cover;
+    box-shadow: inset 0px 0px 0 2000px rgba(0, 10, 44, 0.5);
+}
+#header{
+    background-color: #147cc0;
+    height: 70px;
+}
+.menu-alignment{
+    padding-left: 40px !important;
+}
+.content-home{
+    padding-bottom: 100px;
+}
+.content-home h3{
+    font-family: Raleway, sans-serif;
+    font-size: 3rem;
+    padding-top: 50px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.content-home p{
+    padding-top: 50px;
+    text-align: center;
+    font-family: Raleway, sans-serif;
+    color: #FFFFFF;
+}
+.content-image-heading{
+    box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.6);
+    background-image: url("../images/background-content.jpg");
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 200px;
+}
+.login-form-bg{
+    padding: 30px 0px;
+    background-color: #FFFFFF;
+}
+.login-form-bg input{
+    text-align: center;
+}
+.login-btn{
+    padding: 20px 0px;
+}
+
+/** EDITED FOUNDATION CSS **/
+.top-bar, .top-bar ul{
+    background-color: transparent;
+}
+.top-bar a{
+    color: #FFFFFF;
+    font-size: 1.4rem;
+}
+.top-bar-left li{
+    padding: 0px 20px;
+}
+.top-bar a:hover{
+    color: #333;
+}
+.top-bar-right{
+    margin-top: 10px;
+}
+.menu-text{
+    color: #FFFFFF;
+    padding-right: 20px;
+    border-right: 1px dashed #126aa6;
+}
+/** END EDITED FOUNDATION CSS **/
