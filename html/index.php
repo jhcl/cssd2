@@ -24,14 +24,14 @@ include "../includes/heading.php";
       </p>
       <p class="small-10 small-push-1">
         We hope you have a wonderfull time here on LeakyWiks. </br>
-        - The Leakywiks Team
+        - The LeakyWiks Team
       </p>
 
 
     </div>
   </div>
 
-  <div class="small-4 columns content-right-wrapper grey-border">
+  <div class="small-4 columns content-right-wrapper">
     <?php include "../includes/login.php"; ?>
   </div>
 

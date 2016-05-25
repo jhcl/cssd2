@@ -1,12 +1,20 @@
 html,body{
-    background-color: #e5e5e5;
+    background-color: #f7f7f7;
     font-family: Raleway, sans-serif;
 }
-
 img {
 float: left;
 height: 50px;
 margin: 5px 10px
+}
+.text-align-center{
+    text-align: center;
+}
+.no-padding{
+    padding: 0 !important;
+}
+.black{
+    color: #000000 !important;
 }
 .grey-border{
     border: 1px solid #e5e5e5;
@@ -15,7 +23,7 @@ margin: 5px 10px
     margin-bottom: 50px;
     background-image: url("../images/nav-bg.jpg");
     background-size: cover;
-    box-shadow: inset 0px 0px 0 2000px rgba(0, 10, 44, 0.5);
+    box-shadow: inset 0px 0px 0 2000px rgba(0, 10, 44, 0.8);
 }
 #header{
     background-color: #147cc0;
@@ -29,6 +37,7 @@ margin: 5px 10px
 }
 .content-home h3{
     font-family: Raleway, sans-serif;
+    font-weight: 500;
     font-size: 3rem;
     padding-top: 50px;
     text-align: center;
