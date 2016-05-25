@@ -1,6 +1,8 @@
 <form method="post" action="chkproxy.php" />
+
   <div class="small-12 small-centered columns login-form-bg grey-border">
     <h4 class="text-align-center black no-padding">Login</h4>
+
     <div class="login-box">
       <div class="row">
         <div class="small-8 small-push-2 columns">
