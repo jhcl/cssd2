@@ -165,15 +165,13 @@ include "../includes/heading.php";
 
         <div class="gap-30"></div>
 
-        <div class="small-12 small-centered columns login-form-bg grey-border">
+        <div class="small-12 small-centered columns login-form-bg grey-border comment-box">
             <h4 class="text-align-center black no-padding">My Recent Comments</h4>
 
-            <div class="login-box">
-                <div class="row">
-                    <div class="small-8 small-push-2 columns">
-
-                    </div>
-                </div>
+            <div class="small-12 comment-wrapper">
+                <p class="small-12 no-padding default-p text-align-left">This book is amazing. I really love this story very much.</p>
+                <div class="small-6 columns no-padding text-align-left">Posted by: <span class="highlight">Lars</div>
+                <div class="small-6 columns no-padding text-align-right"></span> Datum: <span class="date">01-06-2016</span></div>
             </div>
         </div>
 

@@ -29,9 +29,11 @@ class User
      */
     public function login($username, $password)
     {
+
         $query = "select * from gebruiker where username = :usr and password = :pwd";
         $params = array("usr" => $username , "pwd" => $password);
         $result = $this->db->selectStatement($query, $params);
+
         if($result == NULL){
 
             $_SESSION['msg'] = "Invalid name or password for ".$username;
