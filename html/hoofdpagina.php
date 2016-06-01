@@ -37,7 +37,7 @@ include "classes/Database.php";
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                 <span class="number columns small-12"> </span>
+                 <span class="number columns small-12"> <?php echo (new Database())->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Comments</h5>
