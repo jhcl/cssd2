@@ -1,4 +1,7 @@
 <?php
+session_start();
+include "../includes/dbconn.php";
+
 if ($_FILES["filename"]["error"] !== UPLOAD_ERR_OK) {
    die("Upload failed " . $_FILES["filename"]["error"]);
 }
@@ -16,6 +19,12 @@ if(isset($_POST['fupload'])) {
 
 if (move_uploaded_file($_FILES["filename"]["tmp_name"], $fufile)) {
     echo basename( $_FILES["filename"]["name"]) . " uploaded.";
+    $query = "insert into bestand (name, location, owner) values (:nm, :loc, :own)";
+    $sth = $dbh->prepare($query);
+    $sth->bindParam(':nm', $_FILES['filename']['name']);
+    $sth->bindParam(':loc', $fufile);
+    $sth->bindParam(':own', $_SESSION['user']);
+    $sth->execute();
 } else {
     echo "Upload failed";
     $_SESSION['msg'] =  "Upload failed";

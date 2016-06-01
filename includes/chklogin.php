@@ -22,6 +22,7 @@
       $username = $row['username'];
       $password = $row['password'];
       $_SESSION['msg'] = "logged in as ".$username;
+      $_SESSION['user'] = $username;
       setcookie("user", $username, time()+3600, "/");
       header('Location:/hoofdpagina.php'); 
 
