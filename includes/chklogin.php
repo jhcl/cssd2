@@ -13,8 +13,8 @@
     $sth->execute();
     if ($sth->rowCount() == 0) {
 
-      $_SESSION['msg'] = "Invalid name or password for".$username;
-      header('Location:/index.php'); 
+      $_SESSION['msg'] = "Invalid name or password for ".$username;
+      header('Location:/index.php');
 
     }
     else {
@@ -23,8 +23,7 @@
       $password = $row['password'];
       $_SESSION['msg'] = "logged in as ".$username;
       setcookie("user", $username, time()+3600, "/");
-
-      header('Location:/index.php');
+      header('Location:/hoofdpagina.php'); 
 
     }
   }
