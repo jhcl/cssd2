@@ -4,9 +4,9 @@ session_start();
 // Heading - Header SECTION
 include "../includes/header.php";
 include "../includes/heading.php";
+include "classes/Database.php";
 // END Heading - Header SECTION
 ?>
-
 <div class="row content-home">
     <div class="small-8 columns content-left-wrapper">
 
@@ -23,21 +23,21 @@ include "../includes/heading.php";
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12">3</span>
+                    <span class="number columns small-12"><?php echo (new Database())->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Files</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12">3</span>
+                    <span class="number columns small-12"><?php echo (new Database())->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Books</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12">0</span>
+                 <span class="number columns small-12"> </span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Comments</h5>
