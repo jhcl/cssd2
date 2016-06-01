@@ -3,8 +3,11 @@
 // Start session for user actions...
 session_start();
 
-// Include Database Connection
-include "../includes/dbconn.php";
+// Include all classes
+foreach (glob("classes/*.php") as $class)
+{
+  include $class;
+}
 
 // Heading - Header SECTION
 include "../includes/header.php";
@@ -13,24 +16,24 @@ include "../includes/heading.php";
 
 ?>
 
-<div class="row content-home">
-  <div class="small-8 columns content-left-wrapper">
-    <div class="small-12 grey-border content-image-heading">
-      <h3>Welcome on LeakyWiks</h3>
-      <p class="small-10 small-push-1">
-        To use LeakyWiks just simply Register yourself and login the application.
-        With this application you can get invited to certain books by the owner of the book.
-        When you got invited to the book, the book you got invited to is ready for use!
-      </p>
-      <p class="small-10 small-push-1">
-        We hope you have a wonderfull time here on LeakyWiks. </br>
-        - The Leakywiks Team
-      </p>
+  <div class="row content-home">
+    <div class="small-8 columns content-left-wrapper">
+      <div class="small-12 grey-border content-image-heading">
+        <h3>Welcome on LeakyWiks</h3>
+        <p class="small-10 small-push-1">
+          To use LeakyWiks just simply Register yourself and login the application.
+          With this application you can get invited to certain books by the owner of the book.
+          When you got invited to the book, the book you got invited to is ready for use!
+        </p>
+        <p class="small-10 small-push-1">
+          We hope you have a wonderfull time here on LeakyWiks. </br>
+          - The LeakyWiks Team
+        </p>
 
 
-    </div>
+      </div>
   </div>
-    
+
   <div class="small-4 columns content-right-wrapper">
     <?php include "../includes/login.php"; ?>
   </div>

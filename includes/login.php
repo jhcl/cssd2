@@ -31,6 +31,8 @@
     <?php
       print_r(PDO::getAvailableDrivers());
       // echo phpinfo();
+      $db = new Database();
+      $dbh = $db->connectToDB();
       $sql = 'SELECT username, password FROM gebruiker';
       foreach ($dbh->query($sql) as $row) {
         print "<br>";
