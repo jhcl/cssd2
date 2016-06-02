@@ -26,8 +26,8 @@ if (move_uploaded_file($_FILES["filename"]["tmp_name"], $fufile)) {
     $sth->bindParam(':own', $_SESSION['user']);
     $sth->execute();
 } else {
-    echo "Upload failed";
     $_SESSION['msg'] =  "Upload failed";
 }
+header('Location:/hoofdpagina.php');
 ?>
 

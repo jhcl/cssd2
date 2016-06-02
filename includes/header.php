@@ -7,8 +7,8 @@
 
             <li class="menu-text">LeakyWiks</li>
 
-                <li class="menu-alignment"><a href="#">Home</a></li>
-                <li class="menu-alignment"><a href="#">Register</a></li>
+                <li class="menu-alignment"><a href="/hoofdpagina.php">Home</a></li>
+                <li class="menu-alignment"><a href="/index.php?logoff=true">Logoff</a></li> 
 
         </ul>
     </div>

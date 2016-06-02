@@ -14,6 +14,18 @@ include "../includes/header.php";
 include "../includes/heading.php";
 // END Heading - Header SECTION
 
+if (isset($_GET['logoff']) && $_GET['logoff']) {
+    $_SESSION = array();
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+    session_destroy();
+}
+
 ?>
 
   <div class="row content-home">

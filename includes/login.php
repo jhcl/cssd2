@@ -29,8 +29,6 @@
     </div>
 
     <?php
-      print_r(PDO::getAvailableDrivers());
-      // echo phpinfo();
       $db = new Database();
       $dbh = $db->connectToDB();
       $sql = 'SELECT username, password FROM gebruiker';
