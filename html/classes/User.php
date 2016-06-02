@@ -41,8 +41,8 @@ class User
 
         }
         else {
-            $username = $result['username'];
-            $password = $result['password'];
+            $username = $result[0]['username'];
+            $password = $result[0]['password'];
             $_SESSION['msg'] = "logged in as " . $username;
             $_SESSION['user'] = $username;
             setcookie("user", $username, time() + 3600, "/");

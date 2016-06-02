@@ -28,21 +28,23 @@ $db = new Database();
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12"><?php echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
+                    <span class="number columns small-12">
+<?php echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?>
+</span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Files</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12"><?php echo $db->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
+                    <span class="number columns small-12"><?php echo $db->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0][0]?></span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Books</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                 <span class="number columns small-12"> <?php echo $db->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0]?></span>
+                 <span class="number columns small-12"> <?php echo $db->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?></span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Comments</h5>
@@ -119,27 +121,19 @@ $db = new Database();
             <div class="small-12 grey-border image-content content-my-uploaded-books">
                 <h3>My Uploaded Books</h3>
             </div>
+                <?php 
+                  $res = $db->selectStatement("select * from bestand where upper(owner) = upper(:ownr)", array("ownr" => $_SESSION['user']));
+foreach ($res as $value) { ?>
             <div class="small-12 grey-border-no-bottom item-wrapper columns">
 
                 <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> TheMostHardToAccess Book Ever </a> by <a href="#" class="highlight author">Author: Piet</a>
+                    <a href="#" class="highlight bold">
+<?php echo $value['name'] ; ?>
+</a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
                 </p>
 
             </div>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Leaked Files  </a> by <a href="#" class="highlight author">Author: Pirate</a>
-                </p>
-
-            </div>
-            <div class="small-12 grey-border item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Hack Resistent </a> by <a href="#" class="highlight author">Author: Ed</a>
-                </p>
-
-            </div>
+                    <?php } ?>
 
     </div>
 

@@ -3,7 +3,7 @@ session_start();
 include "../includes/dbconn.php";
 
 if ($_FILES["filename"]["error"] !== UPLOAD_ERR_OK) {
-   die("Upload failed " . $_FILES["filename"]["error"]);
+   die("-Upload failed " . $_FILES["filename"]["error"]);
 }
 $uploaddir = "/var/www/uploads/";
 $fufile = $uploaddir . basename($_FILES['filename']['name']);
