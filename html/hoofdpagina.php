@@ -29,8 +29,8 @@ $db = new Database();
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
-<?php echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?>
-</span>
+                      <?php echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?>
+                    </span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Files</h5>
@@ -121,20 +121,24 @@ $db = new Database();
             <div class="small-12 grey-border image-content content-my-uploaded-books">
                 <h3>My Uploaded Books</h3>
             </div>
-                <?php 
+              <?php 
                   $res = $db->selectStatement("select * from bestand where upper(owner) = upper(:ownr)", array("ownr" => $_SESSION['user']));
-foreach ($res as $value) { ?>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold">
-<?php echo $value['name'] ; ?>
-</a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
-                </p>
-
-            </div>
-                    <?php } ?>
-
+                  foreach ($res as &$value) { 
+                ?>
+                <form method="post" action="bookaction.php">
+                <div class="small-12 grey-border-no-bottom item-wrapper columns">
+                  <p class="default-p small-8 columns in-item-p">
+                  <a href="#" class="highlight bold">
+                  <?php echo $value['name'] ; ?>
+                  </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
+                  <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
+                  <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" /><?php echo $value['location'] ?> 
+                  <input type="submit" name="bookaction" value="delete" />
+                  <input type="submit" name="bookaction" value="share" />
+                  </p>
+                </div>
+                </form>
+              <?php } ?>
     </div>
 
 
