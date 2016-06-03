@@ -72,11 +72,15 @@ class User
      */
     public function register($username, $password)
     {
-        $query = "insert into gebruiker values (:usr, :pwd,'',1)";
-        $params = array('usr' => $username, 'pwd' => $password);
-        $this->db->createStatement($query, $params);
+        if (preg_match('/[\\\\.\/]+/', $username) === 0 && strlen($username) > 0 && strlen($password) > 0) {
+            $query = "insert into gebruiker values (:usr, :pwd,'',1)";
+            $params = array('usr' => $username, 'pwd' => $password);
+            $this->db->createStatement($query, $params);
 
-        $_SESSION['msg'] = "Registered ".$username." ".$password;
+            $_SESSION['msg'] = "Registered ".$username." ".$password;
+        } else {
+            $_SESSION['msg'] = "No (back)slashes or dots in username or empty password.";
+        }
 
         header('Location:/index.php');
     }
