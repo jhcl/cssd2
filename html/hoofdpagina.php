@@ -92,7 +92,7 @@ $db = new Database();
                 <form method="post" action="sharedaction.php">
                 <div class="small-12 grey-border-no-bottom item-wrapper columns">
                   <p class="default-p small-8 columns in-item-p">
-                  <a href="#" class="highlight bold">
+                  <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
                   <input type="hidden" name="id" value=<?php echo $value['id'] ?> />
@@ -114,7 +114,7 @@ $db = new Database();
                 <form method="post" action="bookaction.php">
                 <div class="small-12 grey-border-no-bottom item-wrapper columns">
                   <p class="default-p small-8 columns in-item-p">
-                  <a href="#" class="highlight bold">
+                  <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
