@@ -76,16 +76,6 @@ $db = new Database();
                     Accept invitation
                 </div>
             </div>
-            <div class="small-12 grey-border item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Hack Resistent </a> by <a href="#" class="highlight author">Author: Ed</a>
-                </p>
-
-                <div class="small-3 columns button cta-button in-item-btn round-button">
-                    Accept invitation
-                </div>
-            </div>
 
             <div class="clear"></div>
             <div class="gap-30"></div>
@@ -105,7 +95,7 @@ $db = new Database();
                   <a href="#" class="highlight bold">
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
-                  <input type="hidden" name="id" value=<?php echo $value['id'] ?> /><?php echo $value['id'] ?>
+                  <input type="hidden" name="id" value=<?php echo $value['id'] ?> />
                   </p>
                 </div>
                 </form>
