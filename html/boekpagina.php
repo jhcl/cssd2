@@ -18,6 +18,6 @@
     echo '<form method="post" action="bookaction">';
     echo '<input type="hidden" value=' . $comm['fileid'] . "/>";
     echo '<textarea cols="2" rows="2" name="commentArea"></textarea>';
-    echo '<input value="submit" name="btnComment"/>';
+    echo '<input type="submit" value="submit" name="btnComment"/>';
 
 ?>
