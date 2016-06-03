@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../includes/dbconn.php";
+require_once "../includes/dbconn.php";
 
 if ($_FILES["filename"]["error"] !== UPLOAD_ERR_OK) {
    die("-Upload failed " . $_FILES["filename"]["error"]);
@@ -28,6 +28,6 @@ if (move_uploaded_file($_FILES["filename"]["tmp_name"], $fufile)) {
 } else {
     $_SESSION['msg'] =  "Upload failed";
 }
-header('Location:/hoofdpagina.php');
+header('location:/hoofdpagina.php');
 ?>
 

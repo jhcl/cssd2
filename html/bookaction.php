@@ -11,5 +11,5 @@ case 'share':
     echo "share boek " . $_POST['bestandid'];
     break;
 }
-header('location: /hoofdpagina.php');
+header("Location: /hoofdpagina.php");
 ?>

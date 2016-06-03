@@ -132,7 +132,7 @@ $db = new Database();
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
-                  <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" /><?php echo $value['location'] ?> 
+                  <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
                   <input type="submit" name="bookaction" value="delete" />
                   <input type="submit" name="bookaction" value="share" />
                   </p>
