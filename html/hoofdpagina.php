@@ -93,27 +93,23 @@ $db = new Database();
             <div class="small-12 grey-border image-content content-my-books">
                 <h3>My Books</h3>
             </div>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> TheMostHardToAccess Book Ever </a> by <a href="#" class="highlight author">Author: Piet</a>
-                </p>
-
-            </div>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Leaked Files  </a> by <a href="#" class="highlight author">Author: Pirate</a>
-                </p>
-
-            </div>
-            <div class="small-12 grey-border item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Hack Resistent </a> by <a href="#" class="highlight author">Author: Ed</a>
-                </p>
-
-            </div>
+              <?php 
+                $res = $db->selectStatement("select * from bestand b, gebruiker g, user_bestandid ub 
+                    where b.id = ub.bestandid and g.username = ub.username and upper(g.username) = upper(:usr)", array("usr" => $_SESSION['user']));
+//  echo "<pre>"; print_r($res); echo "</pre>";die;
+                foreach ($res as &$value) { 
+                ?>
+                <form method="post" action="sharedaction.php">
+                <div class="small-12 grey-border-no-bottom item-wrapper columns">
+                  <p class="default-p small-8 columns in-item-p">
+                  <a href="#" class="highlight bold">
+                  <?php echo $value['name'] ; ?>
+                  </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
+                  <input type="hidden" name="id" value=<?php echo $value['id'] ?> /><?php echo $value['id'] ?>
+                  </p>
+                </div>
+                </form>
+              <?php } ?>
 
             <div class="clear"></div>
             <div class="gap-30"></div>
