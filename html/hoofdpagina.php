@@ -137,6 +137,7 @@ $db = new Database();
                   <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
                   <input type="submit" name="bookaction" value="delete" />
                   <input type="submit" name="bookaction" value="share"  />
+                  <input type="submit" name="bookaction" value="download"  />
                   </p>
                   <p class="default-p small-4 columns in-item-p">
                   <input type="text" name="username" placeholder="naam sharing gebruiker" />

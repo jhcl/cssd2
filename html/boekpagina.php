@@ -15,17 +15,17 @@
 
     $db = new Database();
     if (isset($_GET['id'])) {
-        $boekid = $_GET['id'];
-    }
-    $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
+      $boekid = $_GET['id'];
+      $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
 //    echo "<pre>"; print_r($comments);echo "</pre>";
-    foreach ($comments as $comm) {
-        echo $comm['comment'] . " /  Author: " . $comm['username'] . "<br>";
+      foreach ($comments as $comm) {
+          echo $comm['comment'] . " /  Author: " . $comm['username'] . "<br>";
+      }
+      echo '<form method="post" action="">';
+      echo '<input type="hidden" name="fileid" value="' . $boekid . '" />';
+      echo '<textarea cols="2" rows="2" name="commentArea"></textarea>';
+      echo '<input type="submit" value="addComment" name="bookaction"/>';
+      echo '</form>';
     }
-    echo '<form method="post" action="">';
-    echo '<input type="hidden" name="fileid" value="' . $comm['fileid'] . '" />';
-    echo '<textarea cols="2" rows="2" name="commentArea"></textarea>';
-    echo '<input type="submit" value="addComment" name="bookaction"/>';
-    echo '</form>';
 
 ?>
