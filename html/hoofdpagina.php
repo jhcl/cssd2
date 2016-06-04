@@ -139,7 +139,7 @@ $db = new Database();
                   <input type="submit" name="bookaction" value="share"  />
                   </p>
                   <p class="default-p small-4 columns in-item-p">
-                  <input type="text" name="username" />
+                  <input type="text" name="username" placeholder="naam sharing gebruiker" />
                   </p>
                 </div>
                 </form>
