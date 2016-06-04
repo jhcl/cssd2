@@ -29,7 +29,11 @@ $db = new Database();
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
-                      <?php echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?>
+<?php 
+    if (isset($_SESSION['user'])) {
+      echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0] ;
+    } 
+?>
                     </span>
                 </span>
                 <div class="clear"></div>
@@ -37,14 +41,26 @@ $db = new Database();
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12"><?php echo $db->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0][0]?></span>
+                    <span class="number columns small-12">
+<?php 
+    if (isset($_SESSION['user'])) {
+      echo $db->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0][0] ;
+    }
+?>
+                    </span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Books</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                 <span class="number columns small-12"> <?php echo $db->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0][0]?></span>
+                 <span class="number columns small-12"> 
+<?php 
+    if (isset($_SESSION['user'])) {
+        echo $db->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0][0];
+    }
+?>
+                </span>
                 </span>
                 <div class="clear"></div>
                 <h5>My Comments</h5>
@@ -120,7 +136,10 @@ $db = new Database();
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                   <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
                   <input type="submit" name="bookaction" value="delete" />
-                  <input type="submit" name="bookaction" value="share" />
+                  <input type="submit" name="bookaction" value="share"  />
+                  </p>
+                  <p class="default-p small-4 columns in-item-p">
+                  <input type="text" name="username" />
                   </p>
                 </div>
                 </form>
@@ -146,6 +165,11 @@ $db = new Database();
                                     <input type="submit" value="Upload" class="button expand login-btn small-12" name="fupload">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                  <?php echo $_SESSION['msg']; ?>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -157,13 +181,19 @@ $db = new Database();
         <div class="small-12 small-centered columns login-form-bg grey-border comment-box">
             <h4 class="text-align-center black no-padding">My Recent Comments</h4>
 
+           <?php
+             $res = $db->selectStatement("select * from comment where upper(username) = upper(:user) order by date desc", 
+                    array("user" => $_SESSION['user']));
+             foreach ($res as &$value) { 
+             ?>
             <div class="small-12 comment-wrapper">
-                <p class="small-12 no-padding default-p text-align-left">This book is amazing. I really love this story very much.</p>
-                <div class="small-6 columns no-padding text-align-left">Posted by: <span class="highlight">Lars</div>
-                <div class="small-6 columns no-padding text-align-right"></span> Datum: <span class="date">01-06-2016</span></div>
+            <p class="small-12 no-padding default-p text-align-left"><?php echo $value['comment']; ?> </p>
+            <div class="small-6 columns no-padding text-align-left">Posted by: <span class="highlight"><?php echo $value['username']; ?> </div>
+            <div class="small-6 columns no-padding text-align-right"></span> Datum: <span class="date"><?php echo $value['date']; ?> </span></div>
             </div>
+          <?php } ?>
         </div>
 
     </div>
 </div>
-
+<?php if (isset($_SESSION['msg'])) { $_SESSION['msg'] = ''; } ?>

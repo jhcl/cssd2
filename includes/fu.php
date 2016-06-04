@@ -25,6 +25,7 @@ if (move_uploaded_file($_FILES["filename"]["tmp_name"], $fufile)) {
     $sth->bindParam(':loc', $fufile);
     $sth->bindParam(':own', $_SESSION['user']);
     $sth->execute();
+    $_SESSION['msg'] =  "File uploaded";
 } else {
     $_SESSION['msg'] =  "Upload failed";
 }

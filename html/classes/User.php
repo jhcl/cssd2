@@ -81,7 +81,6 @@ class User
         } else {
             $_SESSION['msg'] = "No (back)slashes or dots in username or empty password.";
         }
-
         header('Location:/index.php');
     }
 
