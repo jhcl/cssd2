@@ -22,14 +22,14 @@ case 'addComment':
 case 'download': 
 //    if (checkAuth($_SESSION['user'], $_POST['bestandid'])) {
     $result = $db->selectStatement("select location,name from bestand where id = :id", array("id"=>$_POST['bestandid']));
-    header('Content-type: application/pdf');
+    header('Content-type: ' . mime_content_type ($result[0]['location']));
 //    echo $result[0]['name']; echo $result[0]['location'];  die;
     header('Content-Disposition: attachment; filename="' . $result[0]["name"] . '"');
     readfile($result[0]['location']);
 //   } else {
 //     $_SESSION['msg'] = "Not authorized";
 //   }
-    break;
+    exit;
 }
 header("Location: /hoofdpagina.php");
 ?>
