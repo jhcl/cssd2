@@ -12,6 +12,7 @@
 
 	<script src="js/jquery.js"></script>
 	<script src="js/foundation/foundation.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 	<script>
 		$(document).foundation();

@@ -2,6 +2,9 @@
 
 // Start session for user actions...
 session_start();
+require('recaptcha/src/autoload.php');
+$secret = '6Lf86iETAAAAAAdbfkK6bzl3Xcl24GKYyOGm83Uw'; 
+$recaptcha = new \ReCaptcha\ReCaptcha($secret);
 
 // Include all classes
 foreach (glob("classes/*.php") as $class)
