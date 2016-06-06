@@ -70,8 +70,7 @@ class User
      * @param $password
      *
      */
-    public function register($username, $password)
-    {
+    public function register($username, $password) {
         if (preg_match('/[\\\\.\/]+/', $username) === 0 && strlen($username) > 0 && strlen($password) > 0) {
             $query = "insert into gebruiker values (:usr, :pwd,'',1)";
             $params = array('usr' => $username, 'pwd' => $password);
@@ -82,6 +81,34 @@ class User
             $_SESSION['msg'] = "No (back)slashes or dots in username or empty password.";
         }
         header('Location:/index.php');
+    }
+
+    /**
+     * Function to check whether user has had invite to a file
+     * TODO : Full PHPDOCS
+     *
+     * @param $bestandid 
+     * @return boolean
+     *
+     */
+    public function hasInvite($bestandid) {
+       $count = $this->db->selectStatement("select count(*) from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid",
+            array("usr"=>$this->name, "bid"=>$bestandid));
+       return (($count[0]['count'] == 1) ? TRUE : FALSE);
+    }
+
+    /**
+     * Function to check whether user has is owner of file
+     * TODO : Full PHPDOCS
+     *
+     * @param $bestandid 
+     * @return boolean
+     *
+     */
+    public function isOwner($bestandid) {
+       $count = $this->db->selectStatement("select count(*) from bestand where upper(owner) = upper(:usr) and id = :bid",
+            array("usr"=>$this->name, "bid"=>$bestandid));
+       return (($count[0]['count'] == 1) ? TRUE : FALSE);
     }
 
     /**
