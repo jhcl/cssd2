@@ -6,8 +6,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] == '') {
 }
 
 // Heading - Header SECTION
-include "../includes/header.php";
 include "../includes/heading.php";
+include "../includes/header.php";
 require_once "classes/Database.php";
 $db = new Database();
 // END Heading - Header SECTION
@@ -131,7 +131,7 @@ $db = new Database();
                 <form method="post" action="bookaction.php">
                 <div class="small-12 grey-border-no-bottom item-wrapper columns">
                   <p class="default-p small-8 columns in-item-p">
-                  <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
+                  <a href="boekpagina.php?id=<?php echo $value['id']; ?>" class="highlight bold">
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
@@ -180,7 +180,7 @@ $db = new Database();
 
         <div class="gap-30"></div>
 
-        <div class="small-12 small-centered columns login-form-bg grey-border comment-box">
+        <div class="small-12 small-centered columns login-form-bg grey-border comment-box" id="x">
             <h4 class="text-align-center black no-padding">My Recent Comments</h4>
 
            <?php
@@ -199,3 +199,28 @@ $db = new Database();
     </div>
 </div>
 <?php if (isset($_SESSION['msg'])) { $_SESSION['msg'] = ''; } ?>
+<script>
+    function documentClick(bookid) {
+        var inputvelddata = $('#searchInput').val();
+        $.ajax({
+            type: "GET",
+            url: "boekpagina.php",
+            data: {"id":bookid},
+            success: function( returnedData ) {
+                $( '#x' ).html( returnedData );
+            }
+        });
+    }
+
+$('.button').click(function() {
+    var inputvelddata = $('#searchInput').val();
+    $.ajax({
+        type: "POST",
+        url: "searchpage.php",
+        data: inputvelddata,
+        success: function( returnedData ) {
+            $( '#x' ).html( returnedData );
+        }
+    });
+});
+</script>

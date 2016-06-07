@@ -8,20 +8,23 @@
             <li class="menu-text">LeakyWiks</li>
 
                 <li class="menu-alignment"><a href="/hoofdpagina.php">Home</a></li>
-<?php if (isset($_SESSION['user']) && $_SESSION['user'] !== '') { 
-                echo '<li class="menu-alignment"><a href="/index.php?logoff=true">Logoff</a></li>';
-} ?>
+<?php 
+if (isset($_SESSION['user']) && $_SESSION['user'] !== '') { ?>
+        <li class="menu-alignment"><a href="/index.php?logoff=true">Logoff</a></li>
+<?php    } ?>
 
         </ul>
     </div>
+<?php 
+if (isset($_SESSION['user']) && $_SESSION['user'] !== '') { ?>
     <div class="top-bar-right">
         <ul class="menu">
-            <li><input type="search" placeholder="Search"></li>
-            <li><button type="button" class="button">Search</button></li>
+            <li><input type="search" placeholder="Search" id="searchInput"></li>
+            <li><button type="button" class="button" name="search">Search</button></li>
         </ul>
     </div>
+<?php    } ?>
 </div>
-
 <!--
   <h2>Leakywiks</h2>
   <p>
