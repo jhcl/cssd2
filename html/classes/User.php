@@ -30,23 +30,28 @@ class User
     public function login($username, $password)
     {
 
-        $query = "select * from gebruiker where username = :usr and password = :pwd";
-        $params = array("usr" => $username , "pwd" => $password);
+        $query = "select * from gebruiker where username = :usr";
+        $params = array("usr" => strtolower($username));
         $result = $this->db->selectStatement($query, $params);
-
+        
         if($result == NULL){
 
-            $_SESSION['msg'] = "Invalid name or password for ".$username;
+            $_SESSION['msg'] = "Invalid name for ".$username;
             header('Location:/index.php');
 
         }
         else {
             $username = $result[0]['username'];
-            $password = $result[0]['password'];
-            $_SESSION['msg'] = "logged in as " . $username;
-            $_SESSION['user'] = $username;
-            setcookie("user", $username, time() + 3600, "/");
-            header('Location:/hoofdpagina.php');
+            $pswHash = $result[0]['password'];
+            $verified = password_verify($password, $pswHash);
+            if ($verified) {
+                $_SESSION['msg'] = "logged in as " . $username;
+                $_SESSION['user'] = $username;
+                setcookie("user", $username, time() + 3600, "/");
+                header('Location:/hoofdpagina.php');
+            } else {
+              $_SESSION['msg'] = "Invalid password for ".$username;
+            }
         }
     }
 
@@ -72,11 +77,12 @@ class User
      */
     public function register($username, $password) {
         if (preg_match('/[\\\\.\/]+/', $username) === 0 && strlen($username) > 0 && strlen($password) > 0) {
-            $query = "insert into gebruiker values (:usr, :pwd,'',1)";
-            $params = array('usr' => $username, 'pwd' => $password);
+            $query = "insert into gebruiker values (:usr, :pwd, 1)";
+            $pswHash = password_hash($password, PASSWORD_DEFAULT);
+            $params = array('usr' => strtolower($username), 'pwd' => $pswHash);
             $this->db->createStatement($query, $params);
 
-            $_SESSION['msg'] = "Registered ".$username." ".$password;
+            $_SESSION['msg'] = "Registered ".$username." ".$pswHash;
         } else {
             $_SESSION['msg'] = "No (back)slashes or dots in username or empty password.";
         }
@@ -92,7 +98,7 @@ class User
      *
      */
     public function hasInvite($bestandid) {
-       $count = $this->db->selectStatement("select count(*) from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid",
+       $count = $this->db->selectStatement("select count(*) as count from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid",
             array("usr"=>$this->name, "bid"=>$bestandid));
        return (($count[0]['count'] == 1) ? TRUE : FALSE);
     }
@@ -106,7 +112,7 @@ class User
      *
      */
     public function isOwner($bestandid) {
-       $count = $this->db->selectStatement("select count(*) from bestand where upper(owner) = upper(:usr) and id = :bid",
+       $count = $this->db->selectStatement("select count(*) as count from bestand where upper(owner) = upper(:usr) and id = :bid",
             array("usr"=>$this->name, "bid"=>$bestandid));
        return (($count[0]['count'] == 1) ? TRUE : FALSE);
     }

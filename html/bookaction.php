@@ -32,7 +32,7 @@ case 'share':
     }
     break;
 case 'addComment': 
-    if ($usr->isOwner($_POST['fileid']) || $usr->isInvited($_POST['fileid'])) {
+    if ($usr->isOwner($_POST['fileid']) || $usr->hasInvite($_POST['fileid'])) {
         $db->insertStatement("insert into comment (username, date, fileid, comment) values (:user, :date, :fileid, :comment)", 
             array("user"=>$_SESSION['user'], "date"=>date("Y-m-d H:i:s"), "fileid"=>$_POST['fileid'], "comment"=>$_POST['commentArea']));
     } else {
@@ -40,7 +40,7 @@ case 'addComment':
     }
     break;
 case 'download': 
-    if ($usr->isOwner($_POST['bestandid']) || $usr->isInvited($_POST['bestandid'])) {
+    if ($usr->isOwner($_POST['bestandid']) || $usr->hasInvite($_POST['bestandid'])) {
         $result = $db->selectStatement("select location,name from bestand where id = :id", array("id"=>$_POST['bestandid']));
         header('Content-type: ' . mime_content_type ($result[0]['location']));
         header('Content-Disposition: attachment; filename="' . $result[0]["name"] . '"');
