@@ -25,7 +25,7 @@ case 'delete':
     break;
 case 'share': 
     if ($usr->isOwner($_POST['bestandid'])) {
-        $db->insertStatement("insert into user_bestandid (username, bestandid) values (:user, :bestandid)",
+        $db->insertStatement("insert into user_bestandid (username, bestandid) values (:user, :bestandid, 1)",
             array("user"=>$_POST['username'], "bestandid"=>$_POST['bestandid']));
     } else {
         $_SESSION['msg'] = "Only owner can share this file.";
@@ -49,6 +49,20 @@ case 'download':
       $_SESSION['msg'] = "Not authorized";
     }
     exit;
+case 'request': 
+    if (!$usr->isOwner($_POST['bestandid']) && !$usr->hasRequested($_POST['bestandid'])) {
+        $db->insertStatement("insert into user_bestandid (username, bestandid, invite) values (:user, :fileid, 0)", 
+            array("user"=>$_SESSION['user'], "fileid"=>$_POST['bestandid']));
+    } else {
+      $_SESSION['msg'] = "Request error";
+    }
+case 'accept': 
+    if ($usr->isOwner($_POST['bestandid'])) {
+        $db->updateStatement("update user_bestandid set invite = 1 where bestandid = :fileid", 
+            array("fileid"=>$_POST['bestandid']));
+    } else {
+      $_SESSION['msg'] = "Accept error";
+    }
 }
 header("Location: /hoofdpagina.php");
 ?>

@@ -21,23 +21,30 @@ $db = new Database();
 
             <div class="small-3 columns counter counter-bg">
                 <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
-                    <span class="number columns small-12">3</span>
+                    <span class="number columns small-12">
+<?php 
+    if (isset($_SESSION['user'])) {
+        echo $db->selectStatement("select count(*) as count from user_bestandid where invite = 0 and bestandid in (
+            select id from bestand where upper(owner) = upper(:usr))", array("usr"=>$_SESSION['user']))[0][0] ;
+    } 
+?>
+                    </span>
                 </span>
                 <div class="clear"></div>
-                <h5 class="small-12 columns">Invitations</h5>
+                <h5 class="small-12 columns">Requests</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
 <?php 
     if (isset($_SESSION['user'])) {
-      echo $db->selectStatement("select count(*) from user_bestandid where username = :usr", array("usr"=>$_SESSION['user']))[0][0] ;
+      echo $db->selectStatement("select count(*) from user_bestandid where username = :usr and invite = 1", array("usr"=>$_SESSION['user']))[0][0] ;
     } 
 ?>
                     </span>
                 </span>
                 <div class="clear"></div>
-                <h5>My Files</h5>
+                <h5>Books</h5>
             </div>
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
@@ -70,38 +77,40 @@ $db = new Database();
             <div class="gap-30"></div>
 
             <div class="small-12 grey-border image-content content-file-invitation">
-                <h3>File invitations</h3>
+                <h3>Book requests</h3>
             </div>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
 
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> TheMostHardToAccess Book Ever </a> by <a href="#" class="highlight author">Author: Piet</a>
+              <?php 
+    $res = $db->selectStatement("select b.id as id, b.owner as owner, b.name as name 
+        from user_bestandid ub, bestand b
+        where ub.invite = 0 
+        and ub.bestandid = b.id 
+        and b.owner = :usr ", array("usr"=>$_SESSION['user']));
+//  echo "<pre>"; print_r($res); echo "</pre>";die;
+                foreach ($res as &$value) { 
+                ?>
+                <form method="post" action="bookaction.php">
+                  <div class="small-12 grey-border-no-bottom item-wrapper columns">
+                    <p class="default-p small-8 columns in-item-p">
+                    <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
+                    <?php echo $value['name'] ; ?>
+                    </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
                 </p>
-
-                <div class="small-3 columns button cta-button in-item-btn round-button">
-                    Accept invitation
-                </div>
+                    <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
+                    <input type="submit" name="bookaction" value="accept" class="small-2 button cta-button in-item-btn round-button" />
             </div>
-            <div class="small-12 grey-border-no-bottom item-wrapper columns">
-
-                <p class="default-p small-8 columns in-item-p">
-                    <a href="#" class="highlight bold"> Leaked Files  </a> by <a href="#" class="highlight author">Author: Pirate</a>
-                </p>
-
-                <div class="small-3 columns button cta-button in-item-btn round-button">
-                    Accept invitation
-                </div>
-            </div>
+                </form>
+              <?php } ?>
 
             <div class="clear"></div>
             <div class="gap-30"></div>
 
             <div class="small-12 grey-border image-content content-my-books">
-                <h3>My Books</h3>
+                <h3>Books</h3>
             </div>
               <?php 
                 $res = $db->selectStatement("select * from bestand b, gebruiker g, user_bestandid ub 
-                    where b.id = ub.bestandid and g.username = ub.username and upper(g.username) = upper(:usr)", array("usr" => $_SESSION['user']));
+                    where b.id = ub.bestandid and g.username = ub.username and upper(g.username) = upper(:usr) and invite = 1", array("usr" => $_SESSION['user']));
 //  echo "<pre>"; print_r($res); echo "</pre>";die;
                 foreach ($res as &$value) { 
                 ?>
@@ -217,7 +226,7 @@ $('.button').click(function() {
     $.ajax({
         type: "POST",
         url: "searchpage.php",
-        data: inputvelddata,
+        data: {"zoek": inputvelddata} ,
         success: function( returnedData ) {
             $( '#x' ).html( returnedData );
         }

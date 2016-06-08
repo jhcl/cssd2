@@ -11,12 +11,12 @@
   $db = new Database();
   $user = new User(null, null, null, null);
 
-  $username = $_POST['username'];
-  $password = $_POST['password'];
+  $username = htmlentities($_POST['username']);
+  $password = htmlentities($_POST['password']);
      
   if (isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response']) {
       $sec = "6Lf86iETAAAAAAdbfkK6bzl3Xcl24GKYyOGm83Uw";
-      $ip = $_SERVER['REMOTE_ADDR'];
+      $ip = filter_var($_SERVER['REMOTE_ADDR'],FILTER_VALIDATE_IP);
       $captcha = $_POST['g-recaptcha-response'];
       $resp = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$sec&response=$captcha&remoteip=$ip");
       $arr = json_decode($resp, TRUE);
@@ -27,6 +27,11 @@
           else if ($_POST['submit'] == 'register') {
             $user->register($username, $password);
           }
+      } else {
+          $_SESSION['msg'] = "Invalid captcha response";
+          header('Location: /index.php');
       }
+  } else {
+      header('Location: /index.php');
   }
 ?>

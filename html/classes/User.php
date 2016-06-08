@@ -98,7 +98,21 @@ class User
      *
      */
     public function hasInvite($bestandid) {
-       $count = $this->db->selectStatement("select count(*) as count from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid",
+       $count = $this->db->selectStatement("select count(*) as count from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid and invite = 1",
+            array("usr"=>$this->name, "bid"=>$bestandid));
+       return (($count[0]['count'] == 1) ? TRUE : FALSE);
+    }
+
+    /**
+     * Function to check whether user has had invite to a file
+     * TODO : Full PHPDOCS
+     *
+     * @param $bestandid 
+     * @return boolean
+     *
+     */
+    public function hasRequested($bestandid) {
+       $count = $this->db->selectStatement("select count(*) as count from user_bestandid where upper(username) = upper(:usr) and bestandid = :bid and invite = 0",
             array("usr"=>$this->name, "bid"=>$bestandid));
        return (($count[0]['count'] == 1) ? TRUE : FALSE);
     }

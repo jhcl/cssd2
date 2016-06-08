@@ -12,11 +12,11 @@
     $usr = new User(null, $_SESSION['user'], null, null);
 
     if (isset($_POST['fileid'])) {
-        $fid = $_POST['fileid'];
+        $fid = intval($_POST['fileid']);
         if ($usr->hasInvite($fid) || $usr->isOwner($fid)) {
             if (isset($_POST['bookaction'])) {
                 $db->insertStatement("insert into comment (username, date, fileid, comment) values (:user, :date, :fileid, :comment)", 
-                    array("user"=>$_SESSION['user'], "date"=>date("Y-m-d H:i:s"), "fileid"=>$fid, "comment"=>$_POST['commentArea']));
+                    array("user"=>$_SESSION['user'], "date"=>date("Y-m-d H:i:s"), "fileid"=>$fid, "comment"=>htmlentities($_POST['commentArea'])));
             }
         }
         else {
@@ -25,7 +25,7 @@
     }
 
     if (isset($_GET['id'])) {
-        $boekid = $_GET['id'];
+        $boekid = intval($_GET['id']);
         if ($usr->hasInvite($boekid) || $usr->isOwner($boekid)) {
             $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
 //          echo "<pre>"; print_r($comments);echo "</pre>";
