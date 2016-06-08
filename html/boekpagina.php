@@ -30,7 +30,7 @@
             $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
 //          echo "<pre>"; print_r($comments);echo "</pre>";
             foreach ($comments as $comm) {
-                echo $comm['comment'] . " /  Author: " . $comm['username'] . "<br>";
+                echo $comm['comment'] . " /  Author: " . $comm['username'] . " / " . $comm['date'] . "<br>";
             }
             echo '<form method="post" action="">';
             echo '<input type="hidden" name="fileid" value="' . $boekid . '" />';
