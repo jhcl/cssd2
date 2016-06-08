@@ -6,7 +6,7 @@ if ($_FILES["filename"]["error"] !== UPLOAD_ERR_OK) {
    die("-Upload failed " . $_FILES["filename"]["error"]);
 }
 $uploaddir = "/var/www/uploads/";
-$fufile = $uploaddir . basename($_FILES['filename']['name']);
+$fufile = $uploaddir . uniqid($_SESSION['user'], TRUE);
 
 if(isset($_POST['fupload'])) {
     $size = filesize($_FILES['filename']['tmp_name']);
