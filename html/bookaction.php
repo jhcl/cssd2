@@ -56,6 +56,7 @@ case 'request':
     } else {
       $_SESSION['msg'] = "Request error";
     }
+    break;
 case 'accept': 
     if ($usr->isOwner($_POST['bestandid'])) {
         $db->updateStatement("update user_bestandid set invite = 1 where bestandid = :fileid", 
