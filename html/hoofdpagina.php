@@ -81,7 +81,7 @@ $db = new Database();
             </div>
 
               <?php 
-    $res = $db->selectStatement("select b.id as id, b.owner as owner, b.name as name 
+    $res = $db->selectStatement("select b.id as id, b.owner as owner, b.name as name, ub.username as requester 
         from user_bestandid ub, bestand b
         where ub.invite = 0 
         and ub.bestandid = b.id 
@@ -92,6 +92,7 @@ $db = new Database();
                 <form method="post" action="bookaction.php">
                   <div class="small-12 grey-border-no-bottom item-wrapper columns">
                     <p class="default-p small-8 columns in-item-p">
+                    Requested by    <?php echo $value['requester']; ?>:<br>
                     <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
                     <?php echo $value['name'] ; ?>
                     </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
@@ -160,7 +161,7 @@ $db = new Database();
 
     <div class="small-4 columns content-right-wrapper">
         <div class="small-12 small-centered columns login-form-bg grey-border">
-            <h4 class="text-align-center black no-padding">Upload File</h4>
+            <h4 class="text-align-center black no-padding">Upload PDF File</h4>
 
             <div class="login-box">
                 <div class="row">
