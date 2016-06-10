@@ -51,6 +51,7 @@ class User
                 header('Location:/hoofdpagina.php');
             } else {
               $_SESSION['msg'] = "Invalid password for ".$username;
+                header('Location:/index.php');
             }
         }
     }

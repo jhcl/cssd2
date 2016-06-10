@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <?php
+    <?php /*
       $db = new Database();
       $dbh = $db->connectToDB();
       $sql = 'SELECT username, password FROM gebruiker';
@@ -44,7 +44,7 @@
         echo $_SESSION['msg'];
         $_SESSION['msg'] = "";
       }
-    ?>
+  */  ?>
   </div>
 </form>
 
