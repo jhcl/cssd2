@@ -10,6 +10,7 @@ include "../includes/heading.php";
 include "../includes/header.php";
 require_once "classes/Database.php";
 $db = new Database();
+$bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random_pseudo_bytes(32));
 // END Heading - Header SECTION
 ?>
 <div class="row content-home">
@@ -98,6 +99,7 @@ $db = new Database();
                     </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
                 </p>
                     <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
+                    <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
                     <input type="submit" name="bookaction" value="accept" class="small-2 button cta-button in-item-btn round-button" />
             </div>
                 </form>
@@ -122,7 +124,9 @@ $db = new Database();
                     <?php echo $value['name'] ; ?>
                     </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
                     <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
-                    <input type="submit" name="bookaction" value="download"  />
+                    <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
+                    <br>
+                    <input type="submit" name="bookaction" value="download"  class="small-3 button cta-button in-item-btn round-button"  />
                     </p>
                   </div>
                 </form>
@@ -146,11 +150,14 @@ $db = new Database();
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                   <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
-                  <input type="submit" name="bookaction" value="delete" />
-                  <input type="submit" name="bookaction" value="share"  />
-                  <input type="submit" name="bookaction" value="download"  />
+                  <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
+                  <br>
+                  <input type="submit" name="bookaction" value="delete" class="small-2 button cta-button in-item-btn round-button"  />
+                  <input type="submit" name="bookaction" value="download" class="small-3 button cta-button in-item-btn round-button text-center"   />
                   </p>
                   <p class="default-p small-4 columns in-item-p">
+                  <input type="submit" name="bookaction" value="share"  class="small-4 button cta-button in-item-btn round-button"  />
+                  <br>
                   <input type="text" name="username" placeholder="naam sharing gebruiker" />
                   </p>
                 </div>
