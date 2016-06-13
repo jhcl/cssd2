@@ -92,16 +92,18 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                 ?>
                 <form method="post" action="bookaction.php">
                   <div class="small-12 grey-border-no-bottom item-wrapper columns">
-                    <p class="default-p small-8 columns in-item-p">
-                    Requested by    <?php echo $value['requester']; ?>:<br>
-                    <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
-                    <?php echo $value['name'] ; ?>
-                    </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
-                </p>
+                    <div class="default-p small-8 columns in-item-p">
+                        Requested by    <?php echo $value['requester']; ?>:<br>
+                        <a href="boekpagina.php?id=<?php echo $value['id'];?>" class="highlight bold">
+                        <?php echo $value['name'] ; ?>
+                        </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?></a>
+                    </div>
                     <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                     <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
-                    <input type="submit" name="bookaction" value="accept" class="small-2 button cta-button in-item-btn round-button" />
-            </div>
+                    <div class="small-4 columns">
+                        <input type="submit" name="bookaction" value="accept" class="small-2 button cta-button in-item-btn round-button" />
+                    </div>
+                  </div>
                 </form>
               <?php } ?>
 
@@ -126,8 +128,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                     <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                     <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
                     <br>
-                    <input type="submit" name="bookaction" value="download"  class="small-3 button cta-button in-item-btn round-button"  />
                     </p>
+                    <input type="submit" name="bookaction" value="download"  class="small-3 button cta-button in-item-btn round-button download-btn"  />
                   </div>
                 </form>
               <?php } ?>
@@ -144,22 +146,23 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                 ?>
                 <form method="post" action="bookaction.php">
                 <div class="small-12 grey-border-no-bottom item-wrapper columns">
-                  <p class="default-p small-8 columns in-item-p">
+                  <p class="default-p small-6 columns in-item-p">
                   <a href="boekpagina.php?id=<?php echo $value['id']; ?>" class="highlight bold">
                   <?php echo $value['name'] ; ?>
                   </a> by <a href="#" class="highlight author">Author: <?php echo $value['owner']; ?> </a>
+                      <span class="small-12 columns no-padding">
+                        <input type="text" name="username" placeholder="naam sharing gebruiker" class="fix-input-width small-10 columns" />
+                        <input type="submit" name="bookaction" value="share"  class="small-3 columns button cta-button in-item-btn fix-in-item-btn"  />
+                      </span>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                   <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
                   <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
-                  <br>
-                  <input type="submit" name="bookaction" value="delete" class="small-2 button cta-button in-item-btn round-button"  />
-                  <input type="submit" name="bookaction" value="download" class="small-3 button cta-button in-item-btn round-button text-center"   />
                   </p>
-                  <p class="default-p small-4 columns in-item-p">
-                  <input type="submit" name="bookaction" value="share"  class="small-4 button cta-button in-item-btn round-button"  />
-                  <br>
-                  <input type="text" name="username" placeholder="naam sharing gebruiker" />
-                  </p>
+                  <div class="default-p small-6 columns in-item-p">
+                      <input type="submit" name="bookaction" value="delete" class="small-4 columns button cta-button in-item-btn round-button"  />
+                      <input type="submit" name="bookaction" value="download" class="small-4 button columns cta-button in-item-btn round-button text-center"   />
+                      <div class="clear"></div>
+                  </div>
                 </div>
                 </form>
               <?php } ?>
@@ -205,10 +208,10 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                     array("user" => $_SESSION['user']));
              foreach ($res as &$value) { 
              ?>
-            <div class="small-12 comment-wrapper">
-            <p class="small-12 no-padding default-p text-align-left"><?php echo $value['comment']; ?> </p>
-            <div class="small-6 columns no-padding text-align-left">Posted by: <span class="highlight"><?php echo $value['username']; ?> </div>
-            <div class="small-6 columns no-padding text-align-right"></span> Datum: <span class="date"><?php echo $value['date']; ?> </span></div>
+            <div class="small-12 columns comment-wrapper">
+            <p class="small-12 no-padding default-p columns text-align-left"><?php echo $value['comment']; ?> </p>
+            <div class="small-6 columns no-padding text-align-left font-size-comment-additional">Posted by: <span class="highlight"><?php echo $value['username']; ?> </div>
+            <div class="small-6 columns no-padding text-align-right font-size-comment-additional"></span> Datum: <span class="date"><?php echo $value['date']; ?> </span></div>
             </div>
           <?php } ?>
         </div>

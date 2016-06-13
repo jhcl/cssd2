@@ -17,7 +17,9 @@
                 <input type="password" name="password" placeholder="Password" />
               </div>
             </div>
-<div class="g-recaptcha" data-sitekey="6Lf86iETAAAAAHh37QhMWITmO1NnlfzGiAsVCwcd"></div>
+            <div class="row">
+              <div class="small-12 columns g-recaptcha" data-sitekey="6Lf86iETAAAAAHh37QhMWITmO1NnlfzGiAsVCwcd"></div>
+            </div>
             <div class="row">
               <div class="small-12 small-centered columns">
                 <input type="submit" name="submit" class="button expand login-btn small-12" value="login"/>

@@ -10,6 +10,9 @@ margin: 5px 10px
 .bold{
     font-weight: bold;
 }
+.rc-anchor-normal{
+    width: 100px !important;
+}
 .default-p{
     padding: 0px !important;
     color: #000000 !important;
@@ -187,7 +190,34 @@ margin: 5px 10px
 .comment-box .comment-wrapper:first-of-type{
     margin-top: 20px;
 }
-
+.g-recaptcha {
+    transform:scale(0.79);
+    transform-origin:0 0;
+}
+.download-btn{
+    position: relative;
+    top: 10px;
+}
+.fix-input-width{
+    width: 75% !important;
+    margin-right: 0 !important;
+}
+.fix-in-item-btn{
+    width: 25% !important;
+    font-size: 0.85rem;
+    margin-right: 0 !important;
+    position: relative;
+    right: 40px;
+}
+.font-size-comment-additional{
+    font-size: 0.6rem;
+    position: relative;
+    top: 10px;
+    right: 0px;
+}
+.comment-wrapper{
+    padding-bottom: 20px;
+}
 /** EDITED FOUNDATION CSS **/
 .top-bar, .top-bar ul{
     background-color: transparent;

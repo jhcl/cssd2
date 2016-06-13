@@ -18,9 +18,9 @@ if (!empty($result)) {
             echo $link . ' by <a href="#" class="highlight author">Author: ' . $value['owner'] . '</a>';
             echo '<input type="hidden" name="bestandid" value=' . $value['id'] . ' />';
         if ($usr->hasInvite($value['id']) || $usr->isOwner($value['id'])) {
-            echo '<input type="submit" name="bookaction" value="download"  />';
+            echo '<input type="submit" name="bookaction" value="download" class="button round-button cta-button" />';
         } else if (!$usr->hasRequested($value['id'])) {
-            echo '<input type="submit" name="bookaction" value="request"  />';
+            echo '<input type="submit" name="bookaction" value="request" class="button round-button cta-button"  />';
         }
             echo '</p> </div> </form>';
     }
