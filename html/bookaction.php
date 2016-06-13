@@ -10,7 +10,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] == '') {
     header('Location: /index.php');
 }
 
-if ($_POST['bookaction_token'] === $_SESSION['bookaction_token']) {
+if (isset($_POST['bookaction_token']) && $_POST['bookaction_token'] === $_SESSION['bookaction_token']) {
     switch (htmlentities($_POST['bookaction'])) {
     case 'delete': 
         $id = intval($_POST['bestandid']);
@@ -68,5 +68,6 @@ if ($_POST['bookaction_token'] === $_SESSION['bookaction_token']) {
         }
     }
 }
+
 header("Location: /hoofdpagina.php");
 ?>

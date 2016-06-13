@@ -101,7 +101,7 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                     <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                     <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
                     <div class="small-4 columns">
-                        <input type="submit" name="bookaction" value="accept" class="small-2 button cta-button in-item-btn round-button" />
+                        <input type="submit" name="bookaction" value="accept" class="small-5 button cta-button in-item-btn round-button" />
                     </div>
                   </div>
                 </form>
