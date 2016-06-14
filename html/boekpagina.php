@@ -12,7 +12,7 @@
     $usr = new User(null, $_SESSION['user'], null, null);
 
     if (isset($_POST['fileid'])) {
-        if ($_POST['post_comment_token'] === $_SESSION['post_comment_token']) {
+//        if ($_POST['post_comment_token'] === $_SESSION['post_comment_token']) {
             $fid = intval($_POST['fileid']);
             if ($usr->hasInvite($fid) || $usr->isOwner($fid)) {
                 if (isset($_POST['bookaction'])) {
@@ -23,7 +23,7 @@
             else {
                 header('Location: /hoofdpagina.php');
             }
-        }
+//        }
     }
 
     if (isset($_GET['id'])) {

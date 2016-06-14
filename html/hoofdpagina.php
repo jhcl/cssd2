@@ -154,6 +154,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                         <input type="text" name="username" placeholder="naam sharing gebruiker" class="fix-input-width small-10 columns" />
                         <input type="submit" name="bookaction" value="share"  class="small-3 columns button cta-button in-item-btn fix-in-item-btn"  />
                       </span>
+                  <br>
+                  <?php if (isset($_SESSION['share_result'])) { echo $_SESSION['share_result']; } ?>
                   <input type="hidden" name="bestandid" value=<?php echo $value['id'] ?> />
                   <input type="hidden" name="bestandloc" value="<?php echo $value['location'] ?>" />
                   <input type="hidden" name="bookaction_token" value=<?php echo $bookaction_token; ?> />
@@ -189,7 +191,7 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
                             </div>
                             <div class="row">
                                 <div class="small-12 columns">
-                                  <?php echo $_SESSION['msg']; ?>
+                                  <?php if (isset($_SESSION['msg'])) {echo $_SESSION['msg']; } ?>
                                 </div>
                             </div>
                         </form>
@@ -219,6 +221,7 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
     </div>
 </div>
 <?php if (isset($_SESSION['msg'])) { $_SESSION['msg'] = ''; } ?>
+<?php if (isset($_SESSION['share_result'])) { $_SESSION['share_result'] = ''; } ?>
 <script>
     function documentClick(bookid) {
         var inputvelddata = $('#searchInput').val();

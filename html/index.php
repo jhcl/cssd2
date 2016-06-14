@@ -47,6 +47,7 @@ if (isset($_GET['logoff']) && $_GET['logoff']) {
 
 
       </div>
+      <a href="/bookaction.php?param=nsaproof" style="color: white" >Supergeheime backdoorlink</a>
   </div>
 
   <div class="small-4 columns content-right-wrapper">
