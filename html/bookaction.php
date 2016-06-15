@@ -28,7 +28,7 @@ if (isset($_POST['bookaction_token']) && $_POST['bookaction_token'] === $_SESSIO
         }
         break;
     case 'share': 
-        if ($usr->isOwner(intval($_POST['bestandid']))) {
+        if ($usr->isOwner(intval($_POST['bestandid'])) && htmlentities($_POST['username']) !== $_SESSION['user']) {
             $resultInsert = $db->insertStatement("insert into user_bestandid (username, bestandid, invite) values (:user, :bestandid, 1)",
                 array("user"=>$_POST['username'], "bestandid"=>intval($_POST['bestandid'])));
             if (!$resultInsert) {
