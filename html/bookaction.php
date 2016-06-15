@@ -30,7 +30,7 @@ if (isset($_POST['bookaction_token']) && $_POST['bookaction_token'] === $_SESSIO
     case 'share': 
         if ($usr->isOwner(intval($_POST['bestandid']))) {
             $resultInsert = $db->insertStatement("insert into user_bestandid (username, bestandid, invite) values (:user, :bestandid, 1)",
-                array("user"=>htmlentities($_POST['username']), "bestandid"=>intval($_POST['bestandid'])));
+                array("user"=>$_POST['username'], "bestandid"=>intval($_POST['bestandid'])));
             if (!$resultInsert) {
                 $_SESSION['share_result'] = "sharing with " . $_POST['username'] . " failed.";
             } else {
