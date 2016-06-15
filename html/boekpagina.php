@@ -43,7 +43,7 @@
                 echo '<h1> ' . $boekname .' </h1>';
                 echo '<h2> Comments: </h2>';
                 foreach ($comments as $comm) {
-                    echo "<div class='comment-on-boek small-12 columns'>" . $comm['comment'] . " /  Author: " . $comm['username'] . " / " . $comm['date'] . "<br>" . "</div>";
+                    echo "<div class='comment-on-boek small-12 columns'><p>" . $comm['comment'] . "</p><span class='author'>Author: " . $comm['username'] . "</span><span class='date'>  " . $comm['date'] . "</span></div>";
                 }
                 $_SESSION['post_comment_token'] = base64_encode( openssl_random_pseudo_bytes(32));
                 echo '<form method="post" action="">';

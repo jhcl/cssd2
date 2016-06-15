@@ -218,20 +218,7 @@ margin: 5px 10px
 .comment-wrapper{
     padding-bottom: 20px;
 }
-.counter-bg:hover{
-    cursor: pointer;
-    background-color: #fbfbfb;
-}
-.item-wrapper:hover{
-    cursor: pointer;
-    background-color: #fbfbfb;
-}
-.comment-wrapper:hover{
-    cursor: pointer;
-    background-color: #fbfbfb;
-}
-.comment-on-boek:hover{
-    cursor: pointer;
+.counter-bg:hover, .item-wrapper:hover, .comment-wrapper:hover, .comment-on-boek:hover{
     background-color: #fbfbfb;
 }
 .content-boekpagina{
@@ -263,6 +250,17 @@ margin: 5px 10px
 }
 .button-in-bookcomment{
     margin: 5px 20px;
+}
+.comment-on-boek .author{
+    position: relative;
+    font-size: 0.8rem;
+    top:-1px;
+}
+.comment-on-boek .date{
+    position: relative;
+    font-size: 0.8rem;
+    top:-1px;
+    padding-left: 20px;
 }
     /** EDITED FOUNDATION CSS **/
 .top-bar, .top-bar ul{
