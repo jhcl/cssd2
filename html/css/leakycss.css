@@ -218,7 +218,52 @@ margin: 5px 10px
 .comment-wrapper{
     padding-bottom: 20px;
 }
-/** EDITED FOUNDATION CSS **/
+.counter-bg:hover, .item-wrapper:hover, .comment-wrapper:hover, .comment-on-boek:hover{
+    background-color: #fbfbfb;
+}
+.content-boekpagina{
+    background-color: #FFFFFF;
+    padding-bottom: 30px !important;
+    margin-bottom: 50px;
+}
+.content-boekpagina textarea{
+    padding: 20px 20px;
+    margin: 20px 20px;
+}
+.content-boekpagina h1{
+    color: #FFFFFF;
+    text-shadow: 0px 0px 5px #000;
+    padding: 60px 20px;
+    background-image: url('../images/comment-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+.content-boekpagina h2{
+    padding: 10px 20px;
+}
+.comment-on-boek:first-of-type{
+    border-top: 1px solid #F8F8F8;
+}
+.comment-on-boek{
+    padding: 20px 20px;
+    border-bottom: 1px solid #F8F8F8;
+}
+.button-in-bookcomment{
+    margin: 5px 20px;
+}
+.comment-on-boek .author{
+    position: relative;
+    font-size: 0.8rem;
+    top:-1px;
+}
+.comment-on-boek .date{
+    position: relative;
+    font-size: 0.8rem;
+    top:-1px;
+    padding-left: 20px;
+}
+
+    /** EDITED FOUNDATION CSS **/
 .top-bar, .top-bar ul{
     background-color: transparent;
 }
@@ -239,5 +284,11 @@ margin: 5px 10px
     color: #FFFFFF;
     padding-right: 20px;
     border-right: 1px dashed #126aa6;
+}
+.warning{
+    background-color: #a50000 !important;
+    border: 1px solid #650000;
+    color: #FFFFFF;
+    text-align: center;
 }
 /** END EDITED FOUNDATION CSS **/

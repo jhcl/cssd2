@@ -26,25 +26,39 @@
 //        }
     }
 
-    if (isset($_GET['id'])) {
-        $boekid = intval($_GET['id']);
-        if ($usr->hasInvite($boekid) || $usr->isOwner($boekid)) {
-            $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
-//          echo "<pre>"; print_r($comments);echo "</pre>";
-            foreach ($comments as $comm) {
-                echo $comm['comment'] . " /  Author: " . $comm['username'] . " / " . $comm['date'] . "<br>";
-            }
-            $_SESSION['post_comment_token'] = base64_encode( openssl_random_pseudo_bytes(32));
-            echo '<form method="post" action="">';
-            echo '<input type="hidden" name="fileid" value="' . $boekid . '" />';
-            echo '<input type="hidden" name="post_comment_token" value="' . $_SESSION['post_comment_token'] . '" />';
-            echo '<textarea cols="2" rows="2" name="commentArea"></textarea>';
-            echo '<input type="submit" value="addComment" name="bookaction"/>';
-            echo '</form>';
-        }
-        else {
-            header('Location: /hoofdpagina.php');
-        }
-    }
-
 ?>
+
+<div class="container">
+    <div class="small-10 small-push-1 columns no-padding content-boekpagina">
+        <div class="small-12 columns no-padding">
+        <?php
+            if (isset($_GET['id'])) {
+                $boekid = intval($_GET['id']);
+                if ($usr->hasInvite($boekid) || $usr->isOwner($boekid)) {
+                $comments = $db->selectStatement("select * from comment where fileid = :id", array("id"=>$boekid));
+                $boekname = $db->selectStatement("select name from bestand where id = :id", array("id"=>$boekid));
+                //          echo "<pre>"; print_r($comments);echo "</pre>";
+                $boekname = $boekname[0]['name'];
+                $boekname = substr($boekname, 0, strpos($boekname, ".pdf"));
+                echo '<h1> ' . $boekname .' </h1>';
+                echo '<h2> Comments: </h2>';
+                foreach ($comments as $comm) {
+                    echo "<div class='comment-on-boek small-12 columns'><p>" . $comm['comment'] . "</p><span class='author'>Author: " . $comm['username'] . "</span><span class='date'>  " . $comm['date'] . "</span></div>";
+                }
+                $_SESSION['post_comment_token'] = base64_encode( openssl_random_pseudo_bytes(32));
+                echo '<form method="post" action="">';
+                    echo '<input type="hidden" name="fileid" value="' . $boekid . '" />';
+                    echo '<input type="hidden" name="post_comment_token" value="' . $_SESSION['post_comment_token'] . '" />';
+                    echo '<textarea class="small-11 columns" cols="2" rows="2" name="commentArea"></textarea>';
+                    echo '<input class="small-3 button round-button cta-button button-in-bookcomment" type="submit" value="addComment" name="bookaction"/>';
+                    echo '</form>';
+                }
+                else {
+                header('Location: /hoofdpagina.php');
+                }
+            }
+        ?>
+
+        </div>
+    </div>
+</div>
