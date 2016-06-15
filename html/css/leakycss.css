@@ -262,6 +262,7 @@ margin: 5px 10px
     top:-1px;
     padding-left: 20px;
 }
+
     /** EDITED FOUNDATION CSS **/
 .top-bar, .top-bar ul{
     background-color: transparent;
@@ -283,5 +284,11 @@ margin: 5px 10px
     color: #FFFFFF;
     padding-right: 20px;
     border-right: 1px dashed #126aa6;
+}
+.warning{
+    background-color: #a50000 !important;
+    border: 1px solid #650000;
+    color: #FFFFFF;
+    text-align: center;
 }
 /** END EDITED FOUNDATION CSS **/

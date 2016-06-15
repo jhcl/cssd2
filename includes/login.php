@@ -1,5 +1,11 @@
 <form method="post" action="chkproxy.php" />
 
+  <?php
+    if(isset($_SESSION['msg'])){
+      echo  '<div class="callout warning">' .  $_SESSION['msg'] . '</div>';
+    }
+  ?>
+
   <div class="small-12 small-centered columns login-form-bg grey-border">
     <h4 class="text-align-center black no-padding">Login</h4>
 

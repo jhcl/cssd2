@@ -36,7 +36,7 @@ class User
         
         if($result == NULL){
 
-            $_SESSION['msg'] = "Invalid name for ".$username;
+            $_SESSION['msg'] = "Invalid username and / or password";
             header('Location:/index.php');
 
         }
@@ -50,7 +50,7 @@ class User
                 setcookie("user", $username, time() + 3600, "/");
                 header('Location:/hoofdpagina.php');
             } else {
-              $_SESSION['msg'] = "Invalid password for ".$username;
+              $_SESSION['msg'] = "Invalid username and / or password ";
                 header('Location:/index.php');
             }
         }
