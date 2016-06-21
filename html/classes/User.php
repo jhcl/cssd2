@@ -1,7 +1,6 @@
 <?php
 
 /**
- * TODO : Full PHPDOCS User Class
  * This class contains information over User and User actions
  */
 class User
@@ -22,10 +21,19 @@ class User
 
     /**
      * Function to login a user
-     * TODO : Full PHPDOCS
      *
-     * @param $username
-     * @param $password
+     * First there will be a check that will check if an user already exists in the database with the given username.@deprecated
+     * If this results in a null returned then the user will be redirected to index.php else
+     * the user will be logged in if the given password matches the password from the database.
+     * Both passwords contains a hash
+     *
+     * If the user entered a valid e-mail and password then the user will be logged in username as value for $_SESSION['user']
+     * and redirected to hoofdpagina.php
+     * If this user entered a invalid password the user will be redirected to index.php
+     *
+     * @param $username the username of an user as string
+     * @param $password the password of an user as string
+     *
      */
     public function login($username, $password)
     {
@@ -57,23 +65,18 @@ class User
     }
 
     /**
-     * Function to logout a user
-     * TODO : Full PHPDOCS
-     *
-     * @param $user_id
-     */
-    public function logout($user_id)
-    {
-        // TODO : Logout implementation
-    }
-
-    /**
      * Function to register a user
-     * TODO : Full PHPDOCS
      *
-     * @param $name
-     * @param $email
-     * @param $password
+     * This function will first check if the user did not enter disallowed characters
+     * This function will also check if the user did enter an username and password that has aleast 1 character
+     * If this is the case than the given username and password will be inserted into the database and the user
+     * is created. The password will be hashed.
+     *
+     * If above isn't true than the user will get the following error message:
+     * "No (back)slashes or dots in username or empty password."
+     *
+     * @param $email the user's given e-mailadres
+     * @param $password the user's given password
      *
      */
     public function register($username, $password) {
@@ -92,10 +95,13 @@ class User
 
     /**
      * Function to check whether user has had invite to a file
-     * TODO : Full PHPDOCS
      *
-     * @param $bestandid 
-     * @return boolean
+     * Simple database PDO query that will check if the user has any invites by checking if
+     * invite == 1 in the database for the given (SESSION) username this happens in table user_bestandid
+     * The book id is connected to the user.
+     *
+     * @param $bestandid the id of the file
+     * @return boolean true if the user got access to the book, false if this is not the case
      *
      */
     public function hasInvite($bestandid) {
@@ -105,11 +111,14 @@ class User
     }
 
     /**
-     * Function to check whether user has had invite to a file
-     * TODO : Full PHPDOCS
+     * Function to check whether user has had requested access to a file
      *
-     * @param $bestandid 
-     * @return boolean
+     * Simple database PDO query that will check if the user has send any requests by checking if
+     * invite == 0 in the database for the given (SESSION) username this happens in table user_bestandid
+     * The book id is connected to the user.
+     *
+     * @param $bestandid the id of the file
+     * @return boolean true if the user requested to the book, false if this is not the case
      *
      */
     public function hasRequested($bestandid) {
@@ -119,11 +128,13 @@ class User
     }
 
     /**
-     * Function to check whether user has is owner of file
-     * TODO : Full PHPDOCS
+     * Function to check whether user is the owner of the file
      *
-     * @param $bestandid 
-     * @return boolean
+     * Simple database PDO query that will check if the user is the owner of the file
+     * If owner == username the user is the owner of the book
+     *
+     * @param $bestandid the id of the file
+     * @return boolean true if the user is the owner of the bbook, false if this is not the case
      *
      */
     public function isOwner($bestandid) {
@@ -132,50 +143,5 @@ class User
        return (($count[0]['count'] == 1) ? TRUE : FALSE);
     }
 
-    /**
-     * Function to validate a user that wants to register
-     * TODO : Full PHPDOCS
-     *
-     * @param $name
-     * @param $email
-     * @param $password
-     */
-    public function registerValidation($name, $email, $password)
-    {
-        // TODO : Register Validation implementation
-    }
-
-    /**
-     * Function for "file owner" to invite anoter user to a file
-     * TODO : Full PHPDOCS
-     *
-     * @param $user_id
-     */
-    public function inviteUserToFile($user_id)
-    {
-        // TODO : Invite User To File implementation
-    }
-
-    /**
-     * Function to grant acces to the file to the selected user
-     * TODO : Full PHPDOCS
-     *
-     * @param $user_id
-     */
-    public function setPrivilige($user_id)
-    {
-        // TODO : Set privilege implementation
-    }
-
-    /**
-     * Function to upload a file
-     * TODO : Full PHPDOCS
-     *
-     * @param $file_obj
-     */
-    public function upload($file_obj)
-    {
-        // TODO : Upload File implementation
-    }
 
 }

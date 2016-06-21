@@ -3,6 +3,15 @@ session_start();
 require_once "../includes/dbconn.php";
 $max_file_size = 26000000;
 
+/**
+ * Upload Functionality
+ *
+ * Only PDFS are allowed else this function will fail and so is the file upload, there is a check on this
+ * Uploaded files will be set in map: /var/www/uploads/
+ * File can't be bigger than the max file size or upload will fail
+ *
+ * If file is uploaded add additional file information in the database for the file
+ */
 if (!isset($_FILES["filename"]["error"])) {
     $_SESSION['msg'] =  "Upload failed.";
 } else if ($_FILES["filename"]["error"] !== UPLOAD_ERR_OK) {

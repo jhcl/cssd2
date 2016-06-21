@@ -10,6 +10,8 @@ include "../includes/heading.php";
 include "../includes/header.php";
 require_once "classes/Database.php";
 $db = new Database();
+
+// Token for CRSF safety
 $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random_pseudo_bytes(32));
 // END Heading - Header SECTION
 ?>
@@ -23,7 +25,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
             <div class="small-3 columns counter counter-bg">
                 <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
-<?php 
+<?php
+    // Count Requests for logged in user
     if (isset($_SESSION['user'])) {
         echo $db->selectStatement("select count(*) as count from user_bestandid where invite = 0 and bestandid in (
             select id from bestand where upper(owner) = upper(:usr))", array("usr"=>$_SESSION['user']))[0][0] ;
@@ -37,7 +40,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
-<?php 
+<?php
+    // Count Books for logged in user
     if (isset($_SESSION['user'])) {
       echo $db->selectStatement("select count(*) from user_bestandid where username = :usr and invite = 1", array("usr"=>$_SESSION['user']))[0][0] ;
     } 
@@ -50,7 +54,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                     <span class="number columns small-12">
-<?php 
+<?php
+    // Count My Books for logged in user
     if (isset($_SESSION['user'])) {
       echo $db->selectStatement("select count(*) from bestand where owner = :usr", array("usr"=>$_SESSION['user']))[0][0] ;
     }
@@ -63,7 +68,8 @@ $bookaction_token = $_SESSION['bookaction_token'] = base64_encode(openssl_random
             <div class="small-3 columns counter counter-bg">
                  <span class="small-6 small-push-3 no-padding-left no-padding-right columns counter-number">
                  <span class="number columns small-12"> 
-<?php 
+<?php
+    // Count MY Comments for logged in user
     if (isset($_SESSION['user'])) {
         echo $db->selectStatement("select count(*) from comment where username = :usr", array("usr"=>$_SESSION['user']))[0][0];
     }

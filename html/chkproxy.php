@@ -11,9 +11,11 @@
   $db = new Database();
   $user = new User(null, null, null, null);
 
+  // Make username and password safe
   $username = htmlentities($_POST['username']);
   $password = htmlentities($_POST['password']);
-     
+
+  // IF Captcha is succesfully entered than the user can either login or register
   if (isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response']) {
       $sec = "6Lf86iETAAAAAAdbfkK6bzl3Xcl24GKYyOGm83Uw";
       $ip = filter_var($_SERVER['REMOTE_ADDR'],FILTER_VALIDATE_IP);

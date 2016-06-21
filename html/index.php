@@ -17,6 +17,7 @@ include "../includes/header.php";
 include "../includes/heading.php";
 // END Heading - Header SECTION
 
+// LOGOUT Functionality
 if (isset($_GET['logoff']) && $_GET['logoff']) {
     $_SESSION = array();
     if (ini_get("session.use_cookies")) {

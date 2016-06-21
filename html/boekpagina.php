@@ -11,6 +11,7 @@
     $db = new Database();
     $usr = new User(null, $_SESSION['user'], null, null);
 
+    // ADD COMMENT FUNCTIONALITY
     if (isset($_POST['fileid'])) {
 //        if ($_POST['post_comment_token'] === $_SESSION['post_comment_token']) {
             $fid = intval($_POST['fileid']);
@@ -32,6 +33,7 @@
     <div class="small-10 small-push-1 columns no-padding content-boekpagina">
         <div class="small-12 columns no-padding">
         <?php
+            // LOAD SELECTED BOOK
             if (isset($_GET['id'])) {
                 $boekid = intval($_GET['id']);
                 if ($usr->hasInvite($boekid) || $usr->isOwner($boekid)) {

@@ -13,6 +13,14 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] == '') {
     header('Location: /index.php');
 }
 
+/**
+ * The following functions you can execute with a book:
+ *  - delete: delete a book, only the owner can do this
+ *  - share: share a book with a other user, this can be only done by the book owner
+ *  - addComment: only invited people to the book can comment on the book
+ *  - request: an user can send a request to the book owner to get request access to the book
+ *  - accept: the owner of the book can accept a book request from an user, this will give access to the book for the requested user.
+ */
 if (isset($_POST['bookaction_token']) && $_POST['bookaction_token'] === $_SESSION['bookaction_token']) {
     switch (htmlentities($_POST['bookaction'])) {
     case 'delete': 
