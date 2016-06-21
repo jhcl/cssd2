@@ -83,7 +83,7 @@ class User
             $params = array('usr' => strtolower($username), 'pwd' => $pswHash);
             $this->db->createStatement($query, $params);
 
-            $_SESSION['msg'] = "Registered ".$username." ".$pswHash;
+            $_SESSION['msg'] = "Registered ".$username;
         } else {
             $_SESSION['msg'] = "No (back)slashes or dots in username or empty password.";
         }
